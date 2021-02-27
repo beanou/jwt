@@ -6,17 +6,18 @@ import (
 
 func TestJwt(t *testing.T) {
 
-	jt := new(TokenTools)
+	// jt := new(TokenTools)
 
-	token, err := jt.CreateToken("liubin")
+	token, err := CreateToken("token", "liubin", "www.sumg.press", "sumgprinting", 7200)
 	if err != nil {
 		t.Error(err)
 	}
 	t.Log("create:", token)
-	rs, err := jt.CheckToken(token.Token)
+	rs, err := CheckToken(token.Token.TokenOrCode, "sumgprinting")
 	if err != nil {
 		t.Error(err)
 	}
 	t.Log("check:", rs)
+	t.Log(rs.Token)
 
 }
